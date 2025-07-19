@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      n8n-nodes-square:
+        specifier: ^1.1.3
+        version: 1.1.3(n8n-workflow@1.79.0)
       sqlite3:
         specifier: ^5.1.7
         version: 5.1.7
@@ -1175,6 +1178,12 @@ packages:
   mute-stdout@2.0.0:
     resolution: {integrity: sha512-32GSKM3Wyc8dg/p39lWPKYu8zci9mJFzV1Np9Of0ZEpe6Fhssn/FbI7ywAMd40uX+p3ZKh3T5EeCFv81qS3HmQ==}
     engines: {node: '>= 10.13.0'}
+
+  n8n-nodes-square@1.1.3:
+    resolution: {integrity: sha512-/v1d+Q67kfxS30RNgLbbRLg8wBEeLPPHuQ6RvmArJ4HU926AHiInwNB0+bFUHXybLSBk8kbgiE7RUynuA+8A8A==}
+    engines: {node: '>=18.10', pnpm: '>=9.1'}
+    peerDependencies:
+      n8n-workflow: '*'
 
   n8n-workflow@1.79.0:
     resolution: {integrity: sha512-H9zLnCRdXEoGjhZE5MdLq5MRed2ynHv1OJ5xuKfRs2KXKx/Jzja9J4gLY7yakBcxSo3VOnBNUqpjatntCnptqA==}
@@ -3086,6 +3095,14 @@ snapshots:
   ms@2.1.3: {}
 
   mute-stdout@2.0.0: {}
+
+  n8n-nodes-square@1.1.3(n8n-workflow@1.79.0):
+    dependencies:
+      n8n-workflow: 1.79.0
+      sqlite3: 5.1.7
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
 
   n8n-workflow@1.79.0:
     dependencies:

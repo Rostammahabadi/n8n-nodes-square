@@ -14,6 +14,7 @@ import { NodeOperationError } from 'n8n-workflow';
 import { squareApiRequest, squareApiRequestAllItems } from './helpers';
 import { customerOperations, customerFields } from './descriptions/CustomerOperations';
 import { invoiceOperations, invoiceFields } from './descriptions/InvoiceOperations';
+import { bookingsOperations, bookingsFields } from './descriptions/BookingsOperations';
 export class Square implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Square',
@@ -51,6 +52,10 @@ export class Square implements INodeType {
         noDataExpression: true,
         options: [
           {
+            name: 'Booking',
+            value: 'booking',
+          },
+          {
             name: 'Customer',
             value: 'customer',
           },
@@ -61,6 +66,8 @@ export class Square implements INodeType {
         ],
         default: 'customer',
       },
+      ...bookingsOperations,
+      ...bookingsFields,
       ...customerOperations,
       ...customerFields,
       ...invoiceOperations,
@@ -84,7 +91,184 @@ export class Square implements INodeType {
 
     for (let i = 0; i < items.length; i++) {
       try {
-        if (resource === 'customer') {
+        if (resource === 'booking') {
+          // *********************************************************************
+          //                             booking
+          // *********************************************************************
+
+          if (operation === 'create') {
+            // ----------------------------------
+            //         booking: create
+            // ----------------------------------
+
+            const body: IDataObject = {
+              location_id: this.getNodeParameter('locationId', i),
+            };
+
+            const additionalFields = this.getNodeParameter('additionalFields', i);
+            Object.assign(body, additionalFields);
+
+            responseData = await squareApiRequest.call(this, 'POST', '/bookings', body);
+          } else if (operation === 'get') {
+            // ----------------------------------
+            //         booking: get
+            // ----------------------------------
+
+            const bookingId = this.getNodeParameter('bookingId', i);
+            responseData = await squareApiRequest.call(
+              this,
+              'GET',
+              `/bookings/${bookingId}`,
+              {},
+              {},
+            );
+          } else if (operation === 'getAll') {
+            // ----------------------------------
+            //         booking: getAll
+            // ----------------------------------
+
+            const returnAll = this.getNodeParameter('returnAll', i);
+            const limit = this.getNodeParameter('limit', i, 50);
+            const filters = this.getNodeParameter('filters', i, {});
+
+            const qs: IDataObject = {};
+            if (filters.locationId) qs.location_id = filters.locationId;
+            if (filters.teamMemberId) qs.team_member_id = filters.teamMemberId;
+            if (filters.customerId) qs.customer_id = filters.customerId;
+            if (filters.startAtMin) qs.start_at_min = filters.startAtMin;
+            if (filters.startAtMax) qs.start_at_max = filters.startAtMax;
+
+            if (returnAll) {
+              responseData = await squareApiRequestAllItems.call(this, 'booking', qs);
+            } else {
+              qs.limit = limit;
+              responseData = await squareApiRequest.call(this, 'GET', '/bookings', {}, qs);
+            }
+          } else if (operation === 'update') {
+            // ----------------------------------
+            //         booking: update
+            // ----------------------------------
+
+            const bookingId = this.getNodeParameter('bookingId', i);
+            const updateFields = this.getNodeParameter('updateFields', i);
+
+            const body: IDataObject = {
+              booking: updateFields,
+            };
+
+            responseData = await squareApiRequest.call(
+              this,
+              'PUT',
+              `/bookings/${bookingId}`,
+              body,
+            );
+          } else if (operation === 'cancel') {
+            // ----------------------------------
+            //         booking: cancel
+            // ----------------------------------
+
+            const bookingId = this.getNodeParameter('bookingId', i);
+            const cancellationReason = this.getNodeParameter('cancellationReason', i);
+
+            const body: IDataObject = {
+              booking_version: 1, // This should ideally be retrieved from the booking first
+              cancellation_reason: cancellationReason,
+            };
+
+            responseData = await squareApiRequest.call(
+              this,
+              'POST',
+              `/bookings/${bookingId}/cancel`,
+              body,
+            );
+          } else if (operation === 'searchAvailability') {
+            // ----------------------------------
+            //         booking: searchAvailability
+            // ----------------------------------
+
+            const query = this.getNodeParameter('query', i);
+
+            const body: IDataObject = {
+              query,
+            };
+
+            responseData = await squareApiRequest.call(
+              this,
+              'POST',
+              '/bookings/availability/search',
+              body,
+            );
+          } else if (operation === 'getBusinessProfile') {
+            // ----------------------------------
+            //         booking: getBusinessProfile
+            // ----------------------------------
+
+            responseData = await squareApiRequest.call(
+              this,
+              'GET',
+              '/bookings/business-booking-profile',
+              {},
+              {},
+            );
+          } else if (operation === 'getLocationProfile') {
+            // ----------------------------------
+            //         booking: getLocationProfile
+            // ----------------------------------
+
+            const locationId = this.getNodeParameter('locationId', i);
+            responseData = await squareApiRequest.call(
+              this,
+              'GET',
+              `/bookings/location-booking-profiles/${locationId}`,
+              {},
+              {},
+            );
+          } else if (operation === 'getLocationProfiles') {
+            // ----------------------------------
+            //         booking: getLocationProfiles
+            // ----------------------------------
+
+            responseData = await squareApiRequest.call(
+              this,
+              'GET',
+              '/bookings/location-booking-profiles',
+              {},
+              {},
+            );
+          } else if (operation === 'getTeamMemberProfile') {
+            // ----------------------------------
+            //         booking: getTeamMemberProfile
+            // ----------------------------------
+
+            const teamMemberId = this.getNodeParameter('teamMemberId', i);
+            responseData = await squareApiRequest.call(
+              this,
+              'GET',
+              `/bookings/team-member-booking-profiles/${teamMemberId}`,
+              {},
+              {},
+            );
+          } else if (operation === 'getTeamMemberProfiles') {
+            // ----------------------------------
+            //         booking: getTeamMemberProfiles
+            // ----------------------------------
+
+            const bookableOnly = this.getNodeParameter('bookableOnly', i, false);
+            const locationId = this.getNodeParameter('locationId', i, '');
+
+            const qs: IDataObject = {};
+            if (bookableOnly) qs.bookable_only = bookableOnly;
+            if (locationId) qs.location_id = locationId;
+
+            responseData = await squareApiRequest.call(
+              this,
+              'GET',
+              '/bookings/team-member-booking-profiles',
+              {},
+              qs,
+            );
+          }
+        } else if (resource === 'customer') {
           // *********************************************************************
           //                             customer
           // *********************************************************************
