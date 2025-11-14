@@ -256,7 +256,8 @@ export const catalogFields: INodeProperties[] = [
 			},
 		},
 		description: 'JSON array of batches containing catalog objects to create or update',
-		placeholder: '[{"objects": [{"type": "ITEM", "ID": "#ITEM1", "item_data": {"name": "Product Name"}}]}]',
+		placeholder:
+			'[{"objects": [{"type": "ITEM", "ID": "#ITEM1", "item_data": {"name": "Product Name"}}]}]',
 	},
 
 	// ----------------------------------
