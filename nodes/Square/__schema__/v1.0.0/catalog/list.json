@@ -1,0 +1,71 @@
+{
+	"type": "object",
+	"properties": {
+		"errors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"category": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"detail": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"cursor": {
+			"type": "string",
+			"description": "The pagination cursor to be used in a subsequent request. If unset, this is the final response."
+		},
+		"objects": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["type", "id", "updated_at", "version"],
+				"properties": {
+					"type": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"version": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"is_deleted": {
+						"type": "boolean"
+					},
+					"catalog_v1_ids": {
+						"type": "array",
+						"items": {
+							"type": "object"
+						}
+					},
+					"present_at_all_locations": {
+						"type": "boolean"
+					},
+					"present_at_location_ids": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	}
+}

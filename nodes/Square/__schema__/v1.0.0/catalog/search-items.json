@@ -1,0 +1,122 @@
+{
+	"type": "object",
+	"properties": {
+		"errors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"category": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"detail": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"cursor": {
+			"type": "string",
+			"description": "The pagination cursor to be used in a subsequent request. If unset, this is the final response."
+		},
+		"items": {
+			"type": "array",
+			"description": "The CatalogItems returned.",
+			"items": {
+				"type": "object",
+				"required": ["type", "id", "updated_at", "version"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["ITEM"]
+					},
+					"id": {
+						"type": "string"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"version": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"is_deleted": {
+						"type": "boolean"
+					},
+					"present_at_all_locations": {
+						"type": "boolean"
+					},
+					"item_data": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"description": {
+								"type": "string"
+							},
+							"abbreviation": {
+								"type": "string"
+							},
+							"label_color": {
+								"type": "string"
+							},
+							"available_online": {
+								"type": "boolean"
+							},
+							"available_for_pickup": {
+								"type": "boolean"
+							},
+							"available_electronically": {
+								"type": "boolean"
+							},
+							"category_id": {
+								"type": "string"
+							},
+							"tax_ids": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"modifier_list_info": {
+								"type": "array",
+								"items": {
+									"type": "object"
+								}
+							},
+							"variations": {
+								"type": "array",
+								"items": {
+									"type": "object"
+								}
+							},
+							"product_type": {
+								"type": "string",
+								"enum": ["REGULAR", "GIFT_CARD", "APPOINTMENTS_SERVICE"]
+							},
+							"skip_modifier_screen": {
+								"type": "boolean"
+							}
+						}
+					}
+				}
+			}
+		},
+		"matched_variation_ids": {
+			"type": "array",
+			"description": "Ids of returned item variations matching the specified query expression.",
+			"items": {
+				"type": "string"
+			}
+		}
+	}
+}

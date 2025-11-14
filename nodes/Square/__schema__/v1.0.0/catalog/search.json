@@ -1,0 +1,96 @@
+{
+	"type": "object",
+	"properties": {
+		"errors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"category": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"detail": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"cursor": {
+			"type": "string",
+			"description": "The pagination cursor to be used in a subsequent request. If unset, this is the final response."
+		},
+		"objects": {
+			"type": "array",
+			"description": "The CatalogObjects returned.",
+			"items": {
+				"type": "object",
+				"required": ["type", "id", "updated_at", "version"],
+				"properties": {
+					"type": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"version": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"is_deleted": {
+						"type": "boolean"
+					},
+					"present_at_all_locations": {
+						"type": "boolean"
+					},
+					"present_at_location_ids": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"item_data": {
+						"type": "object"
+					},
+					"category_data": {
+						"type": "object"
+					},
+					"item_variation_data": {
+						"type": "object"
+					},
+					"tax_data": {
+						"type": "object"
+					},
+					"discount_data": {
+						"type": "object"
+					},
+					"modifier_list_data": {
+						"type": "object"
+					}
+				}
+			}
+		},
+		"related_objects": {
+			"type": "array",
+			"description": "A list of CatalogObjects referenced by the objects in the objects field.",
+			"items": {
+				"type": "object"
+			}
+		},
+		"latest_time": {
+			"type": "string",
+			"format": "date-time",
+			"description": "When the associated product catalog was last updated."
+		}
+	}
+}

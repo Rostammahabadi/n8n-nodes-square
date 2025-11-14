@@ -1,0 +1,71 @@
+{
+	"type": "object",
+	"properties": {
+		"errors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"category": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"detail": {
+						"type": "string"
+					},
+					"field": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"orders": {
+			"type": "array",
+			"description": "The requested orders. This will omit any requested orders that do not exist.",
+			"items": {
+				"type": "object",
+				"required": ["id", "location_id", "created_at", "updated_at", "state", "version"],
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"location_id": {
+						"type": "string"
+					},
+					"reference_id": {
+						"type": "string"
+					},
+					"customer_id": {
+						"type": "string"
+					},
+					"line_items": {
+						"type": "array",
+						"items": {
+							"type": "object"
+						}
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"state": {
+						"type": "string"
+					},
+					"version": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"total_money": {
+						"type": "object"
+					}
+				}
+			}
+		}
+	}
+}

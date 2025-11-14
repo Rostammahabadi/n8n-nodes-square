@@ -1,0 +1,76 @@
+{
+	"type": "object",
+	"properties": {
+		"errors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"category": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"detail": {
+						"type": "string"
+					},
+					"field": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"objects": {
+			"type": "array",
+			"description": "The created successfully created CatalogObjects.",
+			"items": {
+				"type": "object",
+				"required": ["type", "id", "updated_at", "version"],
+				"properties": {
+					"type": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"version": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"is_deleted": {
+						"type": "boolean"
+					}
+				}
+			}
+		},
+		"updated_at": {
+			"type": "string",
+			"format": "date-time",
+			"description": "The database timestamp of this update in RFC 3339 format."
+		},
+		"id_mappings": {
+			"type": "array",
+			"description": "The mapping between client and server IDs for this upsert.",
+			"items": {
+				"type": "object",
+				"properties": {
+					"client_object_id": {
+						"type": "string"
+					},
+					"object_id": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}

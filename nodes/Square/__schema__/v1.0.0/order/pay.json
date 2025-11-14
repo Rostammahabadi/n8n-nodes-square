@@ -1,0 +1,148 @@
+{
+	"type": "object",
+	"properties": {
+		"errors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"category": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"detail": {
+						"type": "string"
+					},
+					"field": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"order": {
+			"type": "object",
+			"required": ["id", "location_id", "created_at", "updated_at", "state", "version"],
+			"description": "The paid order.",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"location_id": {
+					"type": "string"
+				},
+				"reference_id": {
+					"type": "string"
+				},
+				"source": {
+					"type": "object"
+				},
+				"customer_id": {
+					"type": "string"
+				},
+				"line_items": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"taxes": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"discounts": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"service_charges": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"fulfillments": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"tenders": {
+					"type": "array",
+					"description": "The tenders that were used to pay for the order.",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "string"
+							},
+							"type": {
+								"type": "string"
+							},
+							"amount_money": {
+								"type": "object",
+								"properties": {
+									"amount": {
+										"type": "integer",
+										"format": "int64"
+									},
+									"currency": {
+										"type": "string"
+									}
+								}
+							},
+							"processing_fee_money": {
+								"type": "object"
+							},
+							"card_details": {
+								"type": "object"
+							}
+						}
+					}
+				},
+				"net_amounts": {
+					"type": "object"
+				},
+				"created_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"updated_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"closed_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"state": {
+					"type": "string",
+					"enum": ["OPEN", "COMPLETED", "CANCELED", "DRAFT"]
+				},
+				"version": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"total_money": {
+					"type": "object"
+				},
+				"total_tax_money": {
+					"type": "object"
+				},
+				"total_discount_money": {
+					"type": "object"
+				},
+				"total_tip_money": {
+					"type": "object"
+				},
+				"total_service_charge_money": {
+					"type": "object"
+				}
+			}
+		}
+	}
+}

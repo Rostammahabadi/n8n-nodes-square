@@ -1,0 +1,113 @@
+{
+	"type": "object",
+	"properties": {
+		"errors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"category": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"detail": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"object": {
+			"type": "object",
+			"required": ["type", "id", "updated_at", "version"],
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"ITEM",
+						"IMAGE",
+						"CATEGORY",
+						"ITEM_VARIATION",
+						"TAX",
+						"DISCOUNT",
+						"MODIFIER_LIST",
+						"MODIFIER",
+						"PRICING_RULE",
+						"PRODUCT_SET",
+						"TIME_PERIOD",
+						"MEASUREMENT_UNIT",
+						"SUBSCRIPTION_PLAN",
+						"ITEM_OPTION",
+						"ITEM_OPTION_VAL",
+						"CUSTOM_ATTRIBUTE_DEFINITION",
+						"QUICK_AMOUNTS_SETTINGS"
+					]
+				},
+				"id": {
+					"type": "string"
+				},
+				"updated_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"created_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"version": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"is_deleted": {
+					"type": "boolean"
+				},
+				"present_at_all_locations": {
+					"type": "boolean"
+				},
+				"present_at_location_ids": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"absent_at_location_ids": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"item_data": {
+					"type": "object"
+				},
+				"category_data": {
+					"type": "object"
+				},
+				"item_variation_data": {
+					"type": "object"
+				},
+				"tax_data": {
+					"type": "object"
+				},
+				"discount_data": {
+					"type": "object"
+				},
+				"modifier_list_data": {
+					"type": "object"
+				},
+				"modifier_data": {
+					"type": "object"
+				},
+				"image_data": {
+					"type": "object"
+				}
+			}
+		},
+		"related_objects": {
+			"type": "array",
+			"items": {
+				"type": "object"
+			}
+		}
+	}
+}

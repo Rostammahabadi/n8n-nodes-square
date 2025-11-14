@@ -1,0 +1,191 @@
+{
+	"type": "object",
+	"properties": {
+		"errors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"category": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"detail": {
+						"type": "string"
+					},
+					"field": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"order": {
+			"type": "object",
+			"required": ["id", "location_id", "created_at", "updated_at", "state", "version"],
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "The order's unique ID."
+				},
+				"location_id": {
+					"type": "string",
+					"description": "The ID of the seller location that this order is associated with."
+				},
+				"reference_id": {
+					"type": "string",
+					"description": "A client-specified ID to associate an entity in another system with this order."
+				},
+				"source": {
+					"type": "object",
+					"description": "The origination details of the order.",
+					"properties": {
+						"name": {
+							"type": "string"
+						}
+					}
+				},
+				"customer_id": {
+					"type": "string",
+					"description": "The ID of the customer associated with the order."
+				},
+				"line_items": {
+					"type": "array",
+					"description": "The line items included in the order.",
+					"items": {
+						"type": "object",
+						"properties": {
+							"uid": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
+							"quantity": {
+								"type": "string"
+							},
+							"catalog_object_id": {
+								"type": "string"
+							},
+							"variation_name": {
+								"type": "string"
+							},
+							"base_price_money": {
+								"type": "object",
+								"properties": {
+									"amount": {
+										"type": "integer",
+										"format": "int64"
+									},
+									"currency": {
+										"type": "string"
+									}
+								}
+							},
+							"total_money": {
+								"type": "object"
+							}
+						}
+					}
+				},
+				"taxes": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"discounts": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"service_charges": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"fulfillments": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"returns": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"net_amounts": {
+					"type": "object",
+					"properties": {
+						"total_money": {
+							"type": "object"
+						},
+						"tax_money": {
+							"type": "object"
+						},
+						"discount_money": {
+							"type": "object"
+						},
+						"tip_money": {
+							"type": "object"
+						},
+						"service_charge_money": {
+							"type": "object"
+						}
+					}
+				},
+				"created_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"updated_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"closed_at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"state": {
+					"type": "string",
+					"enum": ["OPEN", "COMPLETED", "CANCELED", "DRAFT"],
+					"description": "The state of the order."
+				},
+				"version": {
+					"type": "integer",
+					"format": "int32",
+					"description": "The version number, which is incremented each time an update is committed to the order."
+				},
+				"total_money": {
+					"type": "object",
+					"properties": {
+						"amount": {
+							"type": "integer",
+							"format": "int64"
+						},
+						"currency": {
+							"type": "string"
+						}
+					}
+				},
+				"total_tax_money": {
+					"type": "object"
+				},
+				"total_discount_money": {
+					"type": "object"
+				},
+				"total_tip_money": {
+					"type": "object"
+				},
+				"total_service_charge_money": {
+					"type": "object"
+				}
+			}
+		}
+	}
+}

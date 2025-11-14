@@ -1,0 +1,56 @@
+{
+	"type": "object",
+	"properties": {
+		"errors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"category": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					},
+					"detail": {
+						"type": "string"
+					},
+					"field": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"objects": {
+			"type": "array",
+			"description": "A list of CatalogObjects returned.",
+			"items": {
+				"type": "object",
+				"required": ["type", "id", "updated_at", "version"],
+				"properties": {
+					"type": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"updated_at": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"version": {
+						"type": "integer",
+						"format": "int64"
+					}
+				}
+			}
+		},
+		"related_objects": {
+			"type": "array",
+			"description": "A list of CatalogObjects referenced by the object(s) in the objects field.",
+			"items": {
+				"type": "object"
+			}
+		}
+	}
+}
