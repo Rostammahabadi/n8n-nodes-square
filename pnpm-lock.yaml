@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       n8n-nodes-square:
-        specifier: ^1.1.3
-        version: 1.1.3(n8n-workflow@1.79.0)
+        specifier: ^1.1.4
+        version: 1.1.5(n8n-workflow@1.79.0)
       sqlite3:
         specifier: ^5.1.7
         version: 5.1.7
@@ -1179,8 +1179,8 @@ packages:
     resolution: {integrity: sha512-32GSKM3Wyc8dg/p39lWPKYu8zci9mJFzV1Np9Of0ZEpe6Fhssn/FbI7ywAMd40uX+p3ZKh3T5EeCFv81qS3HmQ==}
     engines: {node: '>= 10.13.0'}
 
-  n8n-nodes-square@1.1.3:
-    resolution: {integrity: sha512-/v1d+Q67kfxS30RNgLbbRLg8wBEeLPPHuQ6RvmArJ4HU926AHiInwNB0+bFUHXybLSBk8kbgiE7RUynuA+8A8A==}
+  n8n-nodes-square@1.1.5:
+    resolution: {integrity: sha512-UpJWrjmnVansH//dlUHaw9B/2HC/6BLdYA2OnKJSbAaW9diJItNMxHfZBwFaYkO3po0f9qv4p6aH50tTtHCMTw==}
     engines: {node: '>=18.10', pnpm: '>=9.1'}
     peerDependencies:
       n8n-workflow: '*'
@@ -3096,7 +3096,7 @@ snapshots:
 
   mute-stdout@2.0.0: {}
 
-  n8n-nodes-square@1.1.3(n8n-workflow@1.79.0):
+  n8n-nodes-square@1.1.5(n8n-workflow@1.79.0):
     dependencies:
       n8n-workflow: 1.79.0
       sqlite3: 5.1.7
