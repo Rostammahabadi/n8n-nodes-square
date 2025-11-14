@@ -229,9 +229,8 @@ export const ordersFields: INodeProperties[] = [
 		},
 		typeOptions: {
 			minValue: 1,
-			maxValue: 500,
 		},
-		default: 100,
+		default: 50,
 		description: 'Max number of results to return',
 	},
 	{
@@ -248,6 +247,31 @@ export const ordersFields: INodeProperties[] = [
 		},
 		options: [
 			{
+				displayName: 'Customer IDs',
+				name: 'customer_ids',
+				type: 'string',
+				default: '',
+				description: 'Comma-separated list of customer IDs to filter orders',
+				placeholder: 'CUST123,CUST456',
+			},
+			{
+				displayName: 'Date Time Filter (JSON)',
+				name: 'date_time_filter',
+				type: 'json',
+				default: '',
+				description: 'Filter orders by date/time range',
+				placeholder:
+					'{"created_at": {"start_at": "2024-01-01T00:00:00Z", "end_at": "2024-12-31T23:59:59Z"}}',
+			},
+			{
+				displayName: 'Fulfillment Filter',
+				name: 'fulfillment_filter',
+				type: 'json',
+				default: '',
+				description: 'Filter orders by fulfillment details',
+				placeholder: '{"fulfillment_types": ["PICKUP", "SHIPMENT"]}',
+			},
+			{
 				displayName: 'Location IDs',
 				name: 'location_ids',
 				type: 'string',
@@ -256,12 +280,12 @@ export const ordersFields: INodeProperties[] = [
 				placeholder: 'LOC123,LOC456',
 			},
 			{
-				displayName: 'Customer IDs',
-				name: 'customer_ids',
-				type: 'string',
+				displayName: 'Source Filter',
+				name: 'source_filter',
+				type: 'json',
 				default: '',
-				description: 'Comma-separated list of customer IDs to filter orders',
-				placeholder: 'CUST123,CUST456',
+				description: 'Filter orders by source',
+				placeholder: '{"source_names": ["Online Store"]}',
 			},
 			{
 				displayName: 'State Filter',
@@ -287,31 +311,6 @@ export const ordersFields: INodeProperties[] = [
 					},
 				],
 				description: 'Filter orders by state',
-			},
-			{
-				displayName: 'Date Time Filter (JSON)',
-				name: 'date_time_filter',
-				type: 'json',
-				default: '',
-				description: 'Filter orders by date/time range',
-				placeholder:
-					'{"created_at": {"start_at": "2024-01-01T00:00:00Z", "end_at": "2024-12-31T23:59:59Z"}}',
-			},
-			{
-				displayName: 'Fulfillment Filter',
-				name: 'fulfillment_filter',
-				type: 'json',
-				default: '',
-				description: 'Filter orders by fulfillment details',
-				placeholder: '{"fulfillment_types": ["PICKUP", "SHIPMENT"]}',
-			},
-			{
-				displayName: 'Source Filter',
-				name: 'source_filter',
-				type: 'json',
-				default: '',
-				description: 'Filter orders by source',
-				placeholder: '{"source_names": ["Online Store"]}',
 			},
 		],
 	},

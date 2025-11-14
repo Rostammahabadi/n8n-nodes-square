@@ -142,9 +142,8 @@ export const catalogFields: INodeProperties[] = [
 		},
 		typeOptions: {
 			minValue: 1,
-			maxValue: 1000,
 		},
-		default: 100,
+		default: 50,
 		description: 'Max number of results to return',
 	},
 	{
@@ -257,8 +256,7 @@ export const catalogFields: INodeProperties[] = [
 			},
 		},
 		description: 'JSON array of batches containing catalog objects to create or update',
-		placeholder:
-			'[{"objects": [{"type": "ITEM", "id": "#item1", "item_data": {"name": "Product Name"}}]}]',
+		placeholder: '[{"objects": [{"type": "ITEM", "ID": "#ITEM1", "item_data": {"name": "Product Name"}}]}]',
 	},
 
 	// ----------------------------------
@@ -304,9 +302,8 @@ export const catalogFields: INodeProperties[] = [
 		},
 		typeOptions: {
 			minValue: 1,
-			maxValue: 1000,
 		},
-		default: 100,
+		default: 50,
 		description: 'Max number of results to return',
 	},
 	{
@@ -390,9 +387,8 @@ export const catalogFields: INodeProperties[] = [
 		},
 		typeOptions: {
 			minValue: 1,
-			maxValue: 1000,
 		},
-		default: 100,
+		default: 50,
 		description: 'Max number of results to return',
 	},
 	{
@@ -417,12 +413,12 @@ export const catalogFields: INodeProperties[] = [
 				placeholder: 'CAT123,CAT456',
 			},
 			{
-				displayName: 'Stock Levels',
-				name: 'stock_levels',
-				type: 'string',
+				displayName: 'Custom Attribute Filters',
+				name: 'custom_attribute_filters',
+				type: 'json',
 				default: '',
-				description: 'Comma-separated list of stock levels (OUT,LOW)',
-				placeholder: 'OUT,LOW',
+				description: 'JSON array of custom attribute filters',
+				placeholder: '[{"custom_attribute_definition_id": "ATTR_ID", "string_filter": "value"}]',
 			},
 			{
 				displayName: 'Enabled Location IDs',
@@ -441,12 +437,12 @@ export const catalogFields: INodeProperties[] = [
 				placeholder: 'REGULAR,APPOINTMENTS_SERVICE',
 			},
 			{
-				displayName: 'Custom Attribute Filters',
-				name: 'custom_attribute_filters',
-				type: 'json',
+				displayName: 'Stock Levels',
+				name: 'stock_levels',
+				type: 'string',
 				default: '',
-				description: 'JSON array of custom attribute filters',
-				placeholder: '[{"custom_attribute_definition_id": "ATTR_ID", "string_filter": "value"}]',
+				description: 'Comma-separated list of stock levels (OUT,LOW)',
+				placeholder: 'OUT,LOW',
 			},
 		],
 	},
